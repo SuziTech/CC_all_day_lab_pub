@@ -9,6 +9,18 @@ class Pub
     @drinks = drinks
   end
 
+  def sell_drinks(customer, drink)
+    if customer.age < 18
+      return "Sorry, we don't serve under age"
+    elsif customer.drunkenness > 200
+      return "Sorry, you drank too much!!"
+    else
+      customer.wallet -= drink.price
+      @till += drink.price
+      customer.drunkenness += drink.alcohol_level
+    end
+  end
+
   def sell_food(customer, food)
     customer.wallet -= food.price
     @till += food.price
